@@ -1,7 +1,5 @@
 # SCA-2D-Simulation
 
-# SCA 2D Simulation: Instrumented Growth Visualization
-
 ## Project Overview
 This project implements an interactive **2D Space Colonization Algorithm (SCA)** inspired by *Modeling Trees with a Space Colonization Algorithm* (Runions, Lane & Prusinkiewicz, 2007). The idea is to let branches compete for **attractor points** in space rather than using recursive splitting.
 
@@ -49,7 +47,7 @@ Users operate on a fixed-size canvas with a **movable single seed** and **attrac
      1) Compute growth direction `v_dir = normalize(normalize(sum(normalize(direction_vectors)))+g)`.  
      2) Create a **candidate child** at `new_pos = current_pos + d_s * v_dir`.  
    - **Sort candidates by parent node ID (ascending)** and then **submit all children at once**, connecting edges `(parent → child)`.  
-     *(This keeps IDs stable and makes growth within a tick effectively simultaneous.)*
+     *(This keeps IDs stable.)*
 
 4. **Update Phase**
    - After all children are submitted, remove any attractor whose distance to **any new node** is ≤ `d_k` (kill radius).
