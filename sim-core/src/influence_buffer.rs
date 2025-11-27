@@ -4,7 +4,7 @@ use glam::Vec2;
 #[derive(Debug)]
 pub struct InfluenceBuffer {
     dir: Vec<Vec2>,
-    count: Vec<u32>,
+    pub count: Vec<u32>,
 }
 
 impl InfluenceBuffer {
@@ -19,9 +19,8 @@ impl InfluenceBuffer {
         if self.dir.len() != len {
             self.dir.resize(len, Vec2::ZERO);
             self.count.resize(len, 0);
-        } else {
-            self.clear();
         }
+        self.clear();
     }
 
     pub fn clear(&mut self) {

@@ -1,5 +1,6 @@
 use crate::types::NodeId;
 use glam::Vec2;
+use rand::Rng;
 
 #[derive(Debug)]
 pub struct Attractor {
@@ -25,5 +26,17 @@ impl AttractorSet {
             .collect();
 
         Self { points }
+    }
+
+    pub fn random_in_square(count: usize, half_range: f32, rng: &mut impl Rng) -> Self {
+        let positions = (0..count)
+            .map(|_| {
+                let x = rng.random_range(-half_range..=half_range);
+                let y = rng.random_range(-half_range..=half_range);
+                Vec2::new(x, y)
+            })
+            .collect();
+
+        Self::from_positions(positions)
     }
 }

@@ -1,6 +1,5 @@
 use crate::types::NodeId;
 use glam::Vec2;
-use std::cmp::Ordering;
 
 #[derive(Debug)]
 pub struct TreeNode {
@@ -21,7 +20,7 @@ impl TreeNode {
             pos,
             radius,
             parent: None,
-            children: Vec::new(),
+            children: Vec::with_capacity(4),
         }
     }
 
@@ -30,7 +29,7 @@ impl TreeNode {
             pos,
             radius,
             parent: Some(parent),
-            children: Vec::new(),
+            children: Vec::with_capacity(4),
         }
     }
 }
@@ -79,7 +78,7 @@ impl Tree {
             })
             .collect();
 
-        dist_list.select_nth_unstable_by(k, |a, b| a.1.total_cmp(&b.1).unwrap_or(Ordering::Equal));
+        dist_list.select_nth_unstable_by(k, |a, b| a.1.total_cmp(&b.1));
 
         Some(dist_list[k])
     }

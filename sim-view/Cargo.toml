@@ -1,0 +1,11 @@
+[package]
+name = "sca_2d_sim"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sim-core = { path = "../sim-core" }
+glam = "0.30.9"
+egui = "0.33.2"
+eframe = "0.33.2"
+rand = "0.9.2"

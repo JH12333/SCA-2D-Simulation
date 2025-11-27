@@ -2,7 +2,6 @@ use crate::{
     attractor::AttractorSet, config::Config, influence_buffer::InfluenceBuffer, tree::Tree,
     types::NodeId,
 };
-use glam::Vec2;
 
 pub fn attraction_phase(
     tree: &Tree,
@@ -28,8 +27,8 @@ pub fn attraction_phase(
 }
 
 pub fn growth_phase(tree: &mut Tree, acc: &InfluenceBuffer, cfg: &Config) -> Vec<NodeId> {
-    let mut new_ids = Vec::new();
-    let mut to_add = Vec::new();
+    let mut new_ids = Vec::with_capacity(16);
+    let mut to_add = Vec::with_capacity(16);
 
     for id in acc.influenced_indices() {
         let mut dir = acc.avg_dir(id);
